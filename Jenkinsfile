@@ -30,7 +30,7 @@ pipeline {
 
                 script {
 
-                    echo `hostname -f; pwd; ls -l`
+
 
                     builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                     builderImage.push()
