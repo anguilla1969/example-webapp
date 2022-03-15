@@ -21,7 +21,11 @@ pipeline {
 
         stage('Make A Builder Image') {
             steps {
+
                 echo 'Starting to build the project builder docker image'
+                echo "account: ${ACCOUNT_REGISTRY_PREFIX}"
+                echo "hash: ${GIT_COMMIT_HASH}"
+                
                 script {
                     builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                     builderImage.push()
