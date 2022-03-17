@@ -36,18 +36,19 @@
 
                         script {
                             PRINT_ENV = sh (script: "env|sort", returnStdout: true)
-                            // dsfgtdsf fsdfsdfsdfsdfsd
                         }
 
-                        echo "ENV: ${PRINT_ENV}"
+                        echo "ENV (start): \n\n"
+                        echo  "${PRINT_ENV}"
+                        echo "ENV (end): \n\n"
                         echo "Starting to build the project builder docker image"
                         echo "account: ${ACCOUNT_REGISTRY_PREFIX}"
                         echo "hash: ${GIT_COMMIT_HASH}"
 
                         script {
 
-                            sh (script: 'env|sort', returnStdout: true)
                             builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
+                            echo "builderImage: ${builderImage} ... "
                             builderImage.push()
                             builderImage.push("${env.GIT_BRANCH}")
                             builderImage.inside('-v $WORKSPACE:/output -u root') {
