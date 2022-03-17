@@ -84,7 +84,7 @@
                                     """
                                 }
                             }
-                            catch (Exception e)
+                            catch (Exception e)  {
                                 echo 'Exception ' + e.toString()
                                 exit 1
                             }
