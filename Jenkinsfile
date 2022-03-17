@@ -58,9 +58,9 @@
                                     """
                                 }
                             }
-                            catch (Exception e)  {
-                                echo 'Exception:' + e.toString()
-                                sh 'Fix the error !'
+                            catch (err)  {
+                                echo err.getMessage()
+                                echo 'echo Fix the error !'
                             }
                         }
                     }
