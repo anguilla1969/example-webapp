@@ -12,6 +12,7 @@
         //      2.      Execute Linux commands
         //      3.      able to run all stages without error
         //      4.      do all changes/commits via the IDEA
+        //              a. (3/16/2022 :: from windows: ssh -T git@github.com is working)
 
         pipeline {
             agent any
@@ -37,8 +38,6 @@
                         echo "hash: ${GIT_COMMIT_HASH}"
 
                         script {
-
-
 
                             builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                             builderImage.push()
