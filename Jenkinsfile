@@ -2,6 +2,7 @@
         def productionImage
         def ACCOUNT_REGISTRY_PREFIX
         def GIT_COMMIT_HASH
+        def PRINT_ENV
 
         // References:
         //      https://github.com/thearthur/example-webapp
@@ -33,13 +34,16 @@
                 stage('Make A Builder Image') {
                     steps {
 
-                        echo 'Starting to build the project builder docker image'
+                        script {
+                            PRINT_ENV = sh (script: "env|sort", returnStdout: true)
+                        }
+
+                        echo "ENV: ${PRINT_ENV}"
+                        echo "Starting to build the project builder docker image"
                         echo "account: ${ACCOUNT_REGISTRY_PREFIX}"
                         echo "hash: ${GIT_COMMIT_HASH}"
 
                         script {
-
-                            echo sh (script: 'env|sort', returnStdout: true)
 
                             builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                             builderImage.push()
