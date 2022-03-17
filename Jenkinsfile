@@ -8,17 +8,37 @@
         //      https://github.com/thearthur/example-webapp
         //      https://github.com/anguilla1969/example-webapp
 
-        // TODO [03/15/2022]
-        //      1.      List all env variables
-        //              a. (* 3/17/2022: DONE SUCCESSFULLY *)
+        // TODO
+        //      5.      When trying to push to github repo
+        //              a. denied: Your authorization token has expired. Re-authenticate and try again.
+        //
+        //              OPEN: 03/17/2022
+        //              RESOLVED:
+        //              NOTES:
+        //
+        //      4.      do all changes/commits via the IDEA
+        //
+        //              OPEN: 03/15/2022
+        //              RESOLVED: 03/16/2022
+        //              NOTES: from windows: ssh -T git@github.com is working
+        //
+        //      3.      Run all stages without errors before processing with class
+        //
+        //              OPEN: 03/15/2022
+        //              RESOLVED:
+        //              NOTES: 03/17/2022: This is WIP but build#17 caused OOM error but webapp-builder did get built locally
         //
         //      2.      Execute Linux commands
         //
-        //      3.      able to run all stages without erro
-        //              a. This is WIP but build#17 caused OOM error but webapp-builder did get built locally
+        //              OPEN: 03/15/2022
+        //              RESOLVED:
         //
-        //      4.      do all changes/commits via the IDEA (* 03/16/2022: DONE SUCCESSFULLY *)
-        //              a. (3/16/2022 :: from windows: ssh -T git@github.com is working)
+        //      1.      List all ENV variables
+        //
+        //              OPEN: 03/15/2022
+        //              CLOSED: 3/17/2022
+        //              NOTES:
+        //
 
         pipeline {
             agent any
