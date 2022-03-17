@@ -47,16 +47,10 @@
 
                         script {
 
-                            try {
-                                builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
-                            }
-                            catch (exc) {
-                                throw
-                            }
-
+                            builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                             builderImage.push()
                             builderImage.push("${env.GIT_BRANCH}")
-                            builderImage.inside('-v $WORKSPACE:/output -u root') {
+                            builderImage.inside('-v $WORKSPACE:/output -u root') {push
                                 sh """
                                    cd /output
                                    lein uberjar
