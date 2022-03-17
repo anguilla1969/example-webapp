@@ -10,8 +10,13 @@
 
         // TODO [03/15/2022]
         //      1.      List all env variables
+        //              a. (* 3/17/2022: DONE SUCCESSFULLY *)
+        //
         //      2.      Execute Linux commands
-        //      3.      able to run all stages without error
+        //
+        //      3.      able to run all stages without erro
+        //              a. This is WIP but build#17 caused OOM error but webapp-builder did get built locally
+        //
         //      4.      do all changes/commits via the IDEA (* 03/16/2022: DONE SUCCESSFULLY *)
         //              a. (3/16/2022 :: from windows: ssh -T git@github.com is working)
 
@@ -60,7 +65,7 @@
                             }
                             catch (err)  {
                                 echo err.getMessage()
-                                echo 'echo Fix the error !'
+                                echo 'Fix the error !'
                             }
                         }
                     }
