@@ -11,7 +11,7 @@
         //      1.      List all env variables
         //      2.      Execute Linux commands
         //      3.      able to run all stages without error
-        //      4.      do all changes/commits via the IDEA
+        //      4.      do all changes/commits via the IDEA (* 03/16/2022: DONE SUCCESSFULLY *)
         //              a. (3/16/2022 :: from windows: ssh -T git@github.com is working)
 
         pipeline {
@@ -39,6 +39,7 @@
 
                         script {
 
+                            sh (script: 'env|sort', returnStdout: true)
                             builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                             builderImage.push()
                             builderImage.push("${env.GIT_BRANCH}")
