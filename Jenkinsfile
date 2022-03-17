@@ -47,14 +47,20 @@
 
                         script {
 
-                            builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
-                            builderImage.push()
-                            builderImage.push("${env.GIT_BRANCH}")
-                            builderImage.inside('-v $WORKSPACE:/output -u root') {push
-                                sh """
-                                   cd /output
-                                   lein uberjar
-                                """
+                            try {
+                                builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
+                                builderImage.push()
+                                builderImage.push("${env.GIT_BRANCH}")
+                                builderImage.inside('-v $WORKSPACE:/output -u root') {push
+                                    sh """
+                                    cd /output
+                                    lein uberjar
+                                    """
+                                }
+                            }
+                            catch (Exception e)  {
+                                echo 'Exception:' + e.toString()
+                                sh 'Fix the error !'
                             }
                         }
                     }
