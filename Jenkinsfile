@@ -36,6 +36,7 @@
 
                         script {
                             PRINT_ENV = sh (script: "env|sort", returnStdout: true)
+                            // dsfgtdsf
                         }
 
                         echo "ENV: ${PRINT_ENV}"
