@@ -56,7 +56,7 @@
                                 builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                                 builderImage.push()
                                 builderImage.push("${env.GIT_BRANCH}")
-                                builderImage.inside('-v $WORKSPACE:/output -u root') {push
+                                builderImage.inside('-v $WORKSPACE:/output -u root') {
                                     sh """
                                     cd /output
                                     lein uberjar
