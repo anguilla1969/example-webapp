@@ -56,7 +56,8 @@
                                 builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                             }
                             catch (Exception e)  {
-                                error 'Build error. Exception ' + throw e
+                                error 'Build error. Exception'
+                                throw e
                                 exit 1
                             }
 
@@ -64,7 +65,8 @@
                                 builderImage.push()
                             }
                             catch (Exception e)  {
-                                echo 'Build (with tag) error. Exception ' + throw e
+                                echo 'Build (with tag) error. Exception '
+                                throw e
                                 exit 1
                             }
 
@@ -72,7 +74,8 @@
                                 builderImage.push("${env.GIT_BRANCH}")
                             }
                             catch (Exception e)  {
-                                echo 'Build (with tag) error. Exception ' + throw e
+                                echo 'Build (with tag) error. Exception '
+                                throw e
                                 exit 1
                             }
 
@@ -85,7 +88,8 @@
                                 }
                             }
                             catch (Exception e)  {
-                                echo 'Exception ' + throw e
+                                echo 'Exception '
+                                throw e
                                 exit 1
                             }
                         }
