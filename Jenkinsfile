@@ -47,8 +47,13 @@
 
                         script {
 
-                            builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
-                            echo "builderImage: ${builderImage} ... "
+                            try {
+                                builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
+                            }
+                            catch (exc) {
+                                throw
+                            }
+
                             builderImage.push()
                             builderImage.push("${env.GIT_BRANCH}")
                             builderImage.inside('-v $WORKSPACE:/output -u root') {
