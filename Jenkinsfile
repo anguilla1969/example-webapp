@@ -54,8 +54,29 @@
 
                             try {
                                 builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
+                            }
+                            catch (Exception e)  {
+                                echo 'Build error. Exception ' + e.toString()
+                                exit 1
+                            }
+
+                            try {
                                 builderImage.push()
+                            }
+                            catch (Exception e)  {
+                                echo 'Build (with tag) error. Exception ' + e.toString()
+                                exit 1
+                            }
+
+                            try {
                                 builderImage.push("${env.GIT_BRANCH}")
+                            }
+                            catch (Exception e)  {
+                                echo 'Build (with tag) error. Exception ' + e.toString()
+                                exit 1
+                            }
+
+                            try {
                                 builderImage.inside('-v $WORKSPACE:/output -u root') {
                                     sh """
                                     cd /output
@@ -63,8 +84,9 @@
                                     """
                                 }
                             }
-                            catch (Exception e)  {
-                                echo 'Fix error. Exception ' + e.toString()
+                            catch (Exception e)
+                                echo 'Exception ' + e.toString()
+                                exit 1
                             }
                         }
                     }
