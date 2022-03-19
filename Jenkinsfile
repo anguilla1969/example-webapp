@@ -7,14 +7,21 @@
         // REFERENCES:
         //      https://github.com/thearthur/example-webapp
         //      https://github.com/anguilla1969/example-webapp
-
+        //
         // TODO:
+        //      7.      Implement a way to push a commit to 'release' branch (e.g. tag)
+        //              a. git push origin master:release
+        //
+        //              OPEN: 03/18/22022
+        //              RESOLVED:
+        //              NOTES:
+        //
         //      6.      OpenJDK 64-Bit Server VM warning: INFO: os::commit_memory(0x00000000f90c4000, 196608, 0)
         //                  failed; error='Cannot allocate memory' (errno=12)
         //
         //                  REFERENCES:
         //                      https://stackoverflow.com/questions/18078859/java-run-out-of-memory-issue
-        //:q1
+        //
         //                  There is insufficient memory for the Java Runtime Environment to continue.
         //                  Native memory allocation (mmap) failed to map 196608 bytes for committing reserved memory.
         //
@@ -88,7 +95,9 @@
         //
 
         pipeline {
+
             agent any
+
             stages {
                 stage('Checkout Source Code and Logging Into Registry') {
                     steps {
