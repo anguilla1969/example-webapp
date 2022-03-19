@@ -213,33 +213,33 @@
                      }
                 }
 
-                // stage('Integration Tests') {
-                //     when {
-                //         branch 'master'
-                //     }
-                //     steps {
-                //         echo 'Deploy to test environment and run integration tests'
-                //         script {
-                //             TEST_ALB_LISTENER_ARN="arn:aws:elasticloadbalancing:us-east-1:089778365617:listener/app/testing-website/3a4d20158ad2c734/49cb56d533c1772b"
-                //             sh """
-                //             ./run-stack.sh example-webapp-test ${TEST_ALB_LISTENER_ARN}
-                //             """
-                //         }
-                //         echo 'Running tests on the integration test environment'
-                //         script {
-                //             sh """
-                //                curl -v http://testing-website-1317230480.us-east-1.elb.amazonaws.com | grep '<title>Welcome to example-webapp</title>'
-                //                if [ \$? -eq 0 ]
-                //                then
-                //                    echo tests pass
-                //                else
-                //                    echo tests failed
-                //                    exit 1
-                //                fi
-                //             """
-                //         }
-                //     }
-                // }
+                stage('Integration Tests') {
+                    when {
+                        branch 'master'
+                    }
+                    steps {
+                        echo 'Deploy to test environment and run integration tests'
+                        script {
+                            TEST_ALB_LISTENER_ARN="arn:aws:elasticloadbalancing:us-east-1:351403397006:listener/app/testing-website/b683de8989fc1cab/9e4dbb8d525774c5"
+                            sh """
+                            ./run-stack.sh example-webapp-test ${TEST_ALB_LISTENER_ARN}
+                            """
+                        }
+                        echo 'Running tests on the integration test environment'
+                        script {
+                            sh """
+                               curl -v testing-website-1542857192.us-east-1.elb.amazonaws.com | grep '<title>Welcome to example-webapp</title>'
+                               if [ \$? -eq 0 ]
+                               then
+                                   echo tests pass
+                               else
+                                   echo tests failed
+                                   exit 1
+                               fi
+                            """
+                        }
+                    }
+                }
 
 
                 stage('Deploy to Production') {
